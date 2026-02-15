@@ -2,12 +2,12 @@ import os
 import streamlit as st
 import base64
 from groq import Groq
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from PIL import Image
 import io
 import json
 
-load_dotenv()
+# load_dotenv()
 
 # Streamlit page configuration
 st.set_page_config(
@@ -16,9 +16,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+api_key = st.secrets["GROQ_API_KEY"]
 # Initialize Groq client
 client = Groq(
-    api_key=os.getenv("GROQ_API_KEY"),
+    api_key=api_key,
 )
 
 # Custom CSS for better UI
@@ -302,3 +303,4 @@ Return ONLY valid JSON. Do not include any markdown formatting or code blocks.""
             except Exception as e:
                 st.error(f"❌ Error during analysis: {str(e)}")
                 st.write("Please check your GROQ_API_KEY and try again.")
+
