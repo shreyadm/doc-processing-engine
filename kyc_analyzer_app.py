@@ -5,7 +5,7 @@ from groq import Groq
 # from dotenv import load_dotenv
 from PIL import Image
 import io
-import json
+import json, httpx
 
 # load_dotenv()
 
@@ -20,6 +20,7 @@ api_key = st.secrets["GROQ_API_KEY"]
 # Initialize Groq client
 client = Groq(
     api_key=api_key,
+    http_client=httpx.Client() 
 )
 
 # Custom CSS for better UI
@@ -303,4 +304,5 @@ Return ONLY valid JSON. Do not include any markdown formatting or code blocks.""
             except Exception as e:
                 st.error(f"❌ Error during analysis: {str(e)}")
                 st.write("Please check your GROQ_API_KEY and try again.")
+
 
