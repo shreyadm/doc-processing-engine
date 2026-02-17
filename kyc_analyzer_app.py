@@ -96,6 +96,14 @@ if uploaded_file:
     # Convert image to base64 for API
     buffered = io.BytesIO()
     image.save(buffered, format="JPEG")
+
+    # Convert image to RGB mode (removes transparency so it can be saved as JPEG)
+    if image.mode in ("RGBA", "P"):
+        image = image.convert("RGB")
+    
+    # Convert image to base64 for API
+    buffered = io.BytesIO()
+    image.save(buffered, format="JPEG")
     base64_image = base64.standard_b64encode(buffered.getvalue()).decode("utf-8")
     
     # Analysis button
@@ -304,5 +312,6 @@ Return ONLY valid JSON. Do not include any markdown formatting or code blocks.""
             except Exception as e:
                 st.error(f"❌ Error during analysis: {str(e)}")
                 st.write("Please check your GROQ_API_KEY and try again.")
+
 
 
