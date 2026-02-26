@@ -54,7 +54,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("📄 KYC Document Analyzer")
-st.markdown("*Powered by Groq - LLAMA 3.2 Vision* for fast and accurate document analysis")
 
 # File upload section
 st.header("Step 1: Upload Document")
@@ -307,4 +306,5 @@ Return ONLY valid JSON. Do not include any markdown formatting or code blocks.""
             except Exception as e:
                 st.error(f"❌ Error during analysis: {str(e)}")
                 st.write("Please check your GROQ_API_KEY and try again.")
+
 
